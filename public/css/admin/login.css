@@ -1,0 +1,10 @@
+.center_div {
+	margin: 0 auto;
+	width: 244px;
+}
+
+.border_class {
+	border: thin #bf9228 solid;
+	margin: 20px;
+	padding: 4%;
+}

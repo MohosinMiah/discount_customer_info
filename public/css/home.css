@@ -19,7 +19,6 @@
 }
 
 .footer {
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -29,4 +28,9 @@
     padding-bottom: 20px;
     text-align: center;
      
+}
+
+
+.text_warning{
+    color: red;
 }

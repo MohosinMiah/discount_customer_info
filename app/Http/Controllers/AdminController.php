@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,30 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.auth.login');
+    }
+
+    
+    
+    /**
+     * Admin Login.
+     *
+     */
+    public function login()
+    {
+
+        return view('admin.auth.login');
+
+    }
+
+    /**
+     * Admin Forgotten Password.
+     *
+     */
+
+    public function forgotten_password(){
+        return view('admin.auth.forgotten_password');
+
     }
 
     /**

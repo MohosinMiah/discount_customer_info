@@ -45,7 +45,9 @@ Route::get('/', 'HomeController@index')->name('home');;
 
 Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
-    Route::get('/', ['as' => 'index', 'uses' => 'SellerController@index'])->name('admin_index');
+    Route::get('/login', ['as' => 'login', 'uses' => 'AdminController@login'])->name('admin_login');
+
+    Route::get('/forgotten', ['as' => 'forgotten', 'uses' => 'AdminController@forgotten_password'])->name('admin_forgotten_password');
 
 
 });

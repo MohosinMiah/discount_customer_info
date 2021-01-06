@@ -37,14 +37,14 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
-     <a href="#"> <h3> <i class="fa fa-user" style="font-size:55px;color:green" data-toggle="tooltip" data-placement="top" title="Admin Login"></i></h3></a>
-      <p>Admin Dashboard Access <a href="#">Click Here .. <i class="fa fa-dashboard" style="font-size:28px;color:red"></i></a> </p>
+     <a href="{{ route('admin.loginadmin_login') }}"> <h3> <i class="fa fa-user" style="font-size:55px;color:green" data-toggle="tooltip" data-placement="top" title="Admin Login"></i></h3></a>
+      <p>Admin Dashboard Access <a href="{{ route('admin.loginadmin_login') }}">Click Here .. <i class="fa fa-dashboard" style="font-size:28px;color:red"></i></a> </p>
       <p><strong>Login for Manage Sellers and Consumers</strong></p>
     </div>
 
     <div class="col-sm-6">
-      <a href="#"> <h3> <i class="fa fa-user" style="font-size:55px" data-toggle="tooltip" data-placement="top" title="Sellers Login"></i></h3></a>
-       <p>Seller Dashboard Access <a href="#">Click Here .. <i class="fa fa-dashboard" style="font-size:28px;color:red"></i></a> </p>
+      <a href="{{ route('admin.loginadmin_login') }}"> <h3> <i class="fa fa-user" style="font-size:55px" data-toggle="tooltip" data-placement="top" title="Sellers Login"></i></h3></a>
+       <p>Seller Dashboard Access <a href="{{ route('admin.loginadmin_login') }}">Click Here .. <i class="fa fa-dashboard" style="font-size:28px;color:red"></i></a> </p>
        <p><strong>Login for Manage Consumers or Customers</strong></p>
      </div>
  
