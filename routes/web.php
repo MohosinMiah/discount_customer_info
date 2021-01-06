@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     echo "<h1>Start .............   Hello Bangladesh</h1>";
+// });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Home Routes
+|--------------------------------------------------------------------------
+|
+| Here contains All Home Routes File
+|
+*/
+
+Route::get('/', 'HomeController@index');
+
+
+

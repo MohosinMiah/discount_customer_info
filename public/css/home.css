@@ -1,0 +1,32 @@
+/* Home Page Design ***********************    */
+.top-header {
+    background: linear-gradient(to bottom, #29a829 18%, #eca318 100%); 
+}
+
+
+.logo{
+    background-color: green;
+    border-radius: 4px;
+}
+
+
+.notice {
+    color: yellow;
+}
+
+.copy_right_link {
+    color: rgb(90, 128, 0);
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #29a829;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+     
+}

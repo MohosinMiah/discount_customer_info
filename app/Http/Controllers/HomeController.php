@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Seller;
+use App\Customer;
 use Illuminate\Http\Request;
 
-class SellerController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class SellerController extends Controller
      */
     public function index()
     {
-        echo "Seller Home Page";
-       
+
+        return view('home.main.main');
+
     }
 
     /**
@@ -42,10 +43,10 @@ class SellerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Seller  $seller
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Seller $seller)
+    public function show(Customer $customer)
     {
         //
     }
@@ -53,10 +54,10 @@ class SellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Seller  $seller
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Seller $seller)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -65,10 +66,10 @@ class SellerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Seller  $seller
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $seller)
+    public function update(Request $request, Customer $customer)
     {
         //
     }
@@ -76,10 +77,10 @@ class SellerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Seller  $seller
+     * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seller $seller)
+    public function destroy(Customer $customer)
     {
         //
     }
