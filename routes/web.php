@@ -51,3 +51,25 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
 
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Seller Routes
+|--------------------------------------------------------------------------
+|
+| Here contains All Seller Routes File
+|
+*/
+
+Route::group(['prefix'=>'sellers','as'=>'seller.'], function(){
+
+    Route::get('/registration', ['as' => 'registration', 'uses' => 'SellerController@registration'])->name('seller_registration');
+
+    Route::get('/login', ['as' => 'login', 'uses' => 'SellerController@login'])->name('seller_login');
+
+    Route::get('/forgotten', ['as' => 'forgotten', 'uses' => 'SellerController@forgotten_password'])->name('seller_forgotten_password');
+
+
+});

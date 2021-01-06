@@ -14,9 +14,47 @@ class SellerController extends Controller
      */
     public function index()
     {
-        return view('seller.auth.login')
+        return view('seller.auth.login');
        
     }
+
+
+     /**
+     * Customer Registration.
+     *
+     */
+
+    public function registration()
+    {
+
+        return view('seller.auth.registration');
+
+    }
+
+    /**
+     * Customer Login.
+     *
+     */
+
+    public function login()
+    {
+
+        return view('seller.auth.login');
+
+    }
+
+    /**
+     * Customer Forgotten Password.
+     *
+     */
+
+    public function forgotten_password(){
+
+        return view('seller.auth.forgotten_password');
+
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
