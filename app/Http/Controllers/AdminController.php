@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Seller;
+use App\Admin;
 use Illuminate\Http\Request;
 
-class SellerController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class SellerController extends Controller
      */
     public function index()
     {
-        return view('seller.auth.login')
-       
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class SellerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Seller  $seller
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Seller $seller)
+    public function show(Admin $admin)
     {
         //
     }
@@ -53,10 +52,10 @@ class SellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Seller  $seller
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Seller $seller)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -65,10 +64,10 @@ class SellerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Seller  $seller
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seller $seller)
+    public function update(Request $request, Admin $admin)
     {
         //
     }
@@ -76,10 +75,10 @@ class SellerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Seller  $seller
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seller $seller)
+    public function destroy(Admin $admin)
     {
         //
     }

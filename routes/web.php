@@ -28,7 +28,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');;
 
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+| Here contains All Seller Routes File
+|
+*/
+
+Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
+
+    Route::get('/', ['as' => 'index', 'uses' => 'SellerController@index'])->name('admin_index');
+
+
+});
