@@ -59,7 +59,7 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 | Seller Routes
 |--------------------------------------------------------------------------
 |
-| Here contains All Seller Routes File
+| Here contains All Seller Routes File 
 |
 */
 

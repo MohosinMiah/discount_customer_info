@@ -25,7 +25,7 @@
   <p>Here There EveryWhere</p> 
 
   <div class="logo">
-    <img src="{{url('/images/discounta2z-logo.png')}}" alt="Discount Logo">
+   <a href="/"> <img src="{{url('/images/discounta2z-logo.png')}}" alt="Discount Logo"> </a>
   </div>
 
   <div class="notice">
