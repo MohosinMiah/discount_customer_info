@@ -46,9 +46,16 @@ Route::get('/', 'HomeController@index')->name('home');;
 Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
     Route::get('/login', ['as' => 'login', 'uses' => 'AdminController@login'])->name('admin_login');
+    
+    Route::post('/login/post', ['as' => 'login', 'uses' => 'AdminController@login_post'])->name('admin_login_post');
+
+    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard'])->name('admin_dashboard');
+
+
 
     Route::get('/forgotten', ['as' => 'forgotten', 'uses' => 'AdminController@forgotten_password'])->name('admin_forgotten_password');
 
+    Route::post('/send/otp', ['as' => 'otp', 'uses' => 'AdminController@send_otp'])->name('admin_send_otp');
 
 });
 

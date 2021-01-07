@@ -11,12 +11,12 @@
     <div class="row ">
       <div class="col-md-2"></div>
       <div class="col-md-8 center_div">
-        <form class="form-horizontal border_class" method="POST" action="">
+        <form class="form-horizontal border_class" method="POST" action="{{ route('admin.otpadmin_send_otp') }}">
             @csrf
             <div class="form-group">
-                <label for="opt_code"> OPT Code &nbsp; <i class="fa fa-mobile" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
+                <label for="phone_number"> Phone Number &nbsp; <i class="fa fa-mobile" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
                   
-                 <input type="text" pattern=".{4}" class="form-control" id="opt_code" placeholder="Your OPT Code" oninput="check(this)" required>
+                 <input type="text" name="phone_number" pattern=".{11}" class="form-control" id="phone_number" placeholder="Phone Number" oninput="check(this)" required>
                  <small class="text_warning">Please Check your Mobile Text Message For OTP.</small>
               </div>
     
