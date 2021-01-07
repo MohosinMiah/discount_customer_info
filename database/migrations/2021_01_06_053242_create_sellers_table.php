@@ -17,9 +17,10 @@ class CreateSellersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->string('email');
+            $table->string('otp')->nullable();
+            $table->string('email')->nullable();
             $table->string('password');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->integer('admin_id');
             $table->timestamps();
         });
