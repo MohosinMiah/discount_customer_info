@@ -116,7 +116,7 @@ class AdminController extends Controller
     }
 
 
-        /**
+     /**
      *  OTP Fill UP
      *
      */
@@ -128,9 +128,48 @@ class AdminController extends Controller
     }
 
 
-public function otp_check(Request $request){
-    echo "'Thats Fine";
-}
+        
+        /**
+         * Check OTP
+         *
+         */ 
+    public function otp_check(Request $request){
+
+           // Data Validation
+
+           $validatedData =Validator::make($request->all(), [
+            'otp' => ['required'],
+        ]);
+
+        // Store Data In Valriables
+
+        $otp = $request->otp;
+
+
+        // Check Data Validation
+
+        if ($validatedData->fails()) {
+            // dd($validatedData);
+
+            return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
+
+        }else{
+
+            // Collect Data From User Table 
+            $is_otp_correct = DB::table('admins')->where('otp',$otp)->first();
+         
+            // Check Given OTP Code with Actual OTP Code 
+            if($is_otp_correct){
+                
+                echo "Your Inputed OTP is CXorrect";
+
+            }else{
+                echo "Your Inputed OTP is not Correct";
+            }
+
+        }
+
+    }
 
 
      /**
@@ -140,51 +179,53 @@ public function otp_check(Request $request){
     {
         $code = rand(1000,9999);
 
-       
+            
+        // Data Validation
 
-      // Data Validation
+        $validatedData =Validator::make($request->all(), [
+            'phone' => ['required'],
+        ]);
 
-      $validated = $request->validate([
-        'phone_number' => 'required',
-    ]);
+        // Store Data In Valriables
 
-     $phone = $request->phone_number;
+        $phone = $request->phone;
 
 
-      // Check This Associate Number user is Admin or Not
+        // Check Data Validation
 
-      $is_admin = DB::table('admins')->where('phone',$phone)->first();
-    
+        if ($validatedData->fails()) {
+            // dd($validatedData);
 
-      if($is_admin){
-          echo "OK SUCCESS";
-          die;
+            return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
 
-      }else{
-          echo "NI";
-          die;
-      }
+        }else{
+                // Check This Associate Number user is Admin or Not
+
+            $is_admin = DB::table('admins')->where('phone',$phone)->first();
+            
+
+            if($is_admin){
+
+                // Save Database 
+                $status =  DB::table('admins')->where('id',1)->update(
+                        ['otp' => $code]);
+                
+
+                $this->sendSms($request->phone,$code);
+
+
+                return redirect()->route('admin.send_otpadmin_otp');
+
+            }
 
    
-        $this->sendSms($request->phone_number,$code);
+    
+
+        }
 
 
-        return redirect()->route('admin.send_otpadmin_otp');
 
-        // die();
-
-        // Save Database 
-    //    $status =  DB::table('deal_lists')->insert([
-    //         ['deal_name' => $request->deal_name,
-    //         'phone' => $request->phone,
-    //         'otp' => $code]
-    //     ]);
-
-        // // Send SMS
-        // if( $status ){
-        //     $this->sendSms($request->phone,$code);
-        // }
-        // return redirect('/customer/success');
+     
 
     }
 

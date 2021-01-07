@@ -9,15 +9,16 @@
 
 <div class="container form_style">
 
+  
         {{-- Display Error Message  --}}
-  <div class="row">
-    <div class="col-md-12">
-
-       {{-- Display Error Message  --}}
-      @include('admin.error.error')
-    
-    </div>
-  </div>
+        <div class="row">
+          <div class="col-md-12">
+      
+             {{-- Display Error Message  --}}
+            @include('admin.error.error')
+          
+          </div>
+        </div>
 
     <div class="row ">
       <div class="col-md-2"></div>
@@ -28,13 +29,13 @@
             <div class="form-group">
                 <label for="phone">Phone Number &nbsp; <i class="fa fa-mobile" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
                   
-                 <input type="tel"  class="form-control" name="phone" id="phone" placeholder="Your Phone Number" >
+                 <input type="tel" pattern=".{11}" class="form-control" name="phone" id="phone" placeholder="Your Phone Number" oninput="check(this)" required>
               </div>
     
               <div class="form-group">
                 <label for="password">Password &nbsp; <i class="fa fa-key" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
                   
-                 <input type="password" class="form-control" name="password" id="password" placeholder="Password"  >
+                 <input type="password" class="form-control" name="password" id="password" placeholder="Password"  required>
               </div>
        
               <button type="submit" class="btn btn-success">Login</button>

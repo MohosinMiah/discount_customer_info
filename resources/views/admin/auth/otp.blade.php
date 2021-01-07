@@ -8,6 +8,17 @@
     {{-- Main  Section  --}}
 
 <div class="container form_style">
+
+  {{-- Display Error Message  --}}
+  <div class="row">
+    <div class="col-md-12">
+
+       {{-- Display Error Message  --}}
+      @include('admin.error.error')
+    
+    </div>
+  </div>
+
     <div class="row ">
       <div class="col-md-2"></div>
       <div class="col-md-8 center_div">
