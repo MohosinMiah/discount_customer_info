@@ -57,6 +57,10 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
     Route::post('/send/otp', ['as' => 'otp', 'uses' => 'AdminController@send_otp'])->name('admin_send_otp');
 
+    Route::get('/send/otp', ['as' => 'send_otp', 'uses' => 'AdminController@otp_updata'])->name('admin_otp');
+
+    Route::post('/otp/check', ['as' => 'otp_check', 'uses' => 'AdminController@otp_check'])->name('admin_otp_check');
+
 });
 
 

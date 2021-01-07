@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use Validator;
 use \DB;
 
 class AdminController extends Controller
@@ -40,24 +41,47 @@ class AdminController extends Controller
      */
     public function login_post(Request $request){
 
-        $phone = $request->phone_number;
+
+        // Data Validation
+
+        $validatedData =Validator::make($request->all(), [
+            'phone' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        // Store Data In Valriables
+
+        $phone = $request->phone;
+
         $password =md5($request->password);
 
+        // Check Data Validation
 
-       $admin =  DB::table('admins')->where(['phone'=> $phone,'password'=> $password ])->first();
-       // Check Admin Login Success Or Fail
-       if($admin){
+        if ($validatedData->fails()) {
+            // dd($validatedData);
 
-          return redirect()->route('admin.dashboardadmin_dashboard');
+            return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
 
-       }else{
+        }else{
 
-           echo "Please Check User Name and PassWord";
+            $admin =  DB::table('admins')->where(['phone'=> $phone,'password'=> $password ])->first();
+            // Check Admin Login Success Or Fail
+            if($admin){
 
-       }
-        //   Test  ********************   
-        // var_dump($admin);
-        //  die;
+                return redirect()->route('admin.dashboardadmin_dashboard');
+
+                //   Test  ********************   
+                // var_dump($admin);
+                //  die;
+
+            }
+                
+       
+        }
+
+       
+
+      
 
         
     }
@@ -92,17 +116,62 @@ class AdminController extends Controller
     }
 
 
+        /**
+     *  OTP Fill UP
+     *
+     */
+
+    public function otp_updata(){
+            
+        return view('admin.auth.otp');
+
+    }
+
+
+public function otp_check(Request $request){
+    echo "'Thats Fine";
+}
+
 
      /**
      * Send OTP
      */
     public function send_otp(Request $request)
     {
-        // $code = str_random(4);
-        $code = '3232';
+        $code = rand(1000,9999);
+
+       
+
+      // Data Validation
+
+      $validated = $request->validate([
+        'phone_number' => 'required',
+    ]);
+
+     $phone = $request->phone_number;
+
+
+      // Check This Associate Number user is Admin or Not
+
+      $is_admin = DB::table('admins')->where('phone',$phone)->first();
+    
+
+      if($is_admin){
+          echo "OK SUCCESS";
+          die;
+
+      }else{
+          echo "NI";
+          die;
+      }
+
    
         $this->sendSms($request->phone_number,$code);
-        die();
+
+
+        return redirect()->route('admin.send_otpadmin_otp');
+
+        // die();
 
         // Save Database 
     //    $status =  DB::table('deal_lists')->insert([
