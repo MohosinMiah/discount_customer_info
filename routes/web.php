@@ -61,6 +61,7 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
     Route::post('/otp/check', ['as' => 'otp_check', 'uses' => 'AdminController@otp_check'])->name('admin_otp_check');
 
+    Route::get('/password/reset', ['as' => 'pass_reset', 'uses' => 'AdminController@password_reset'])->name('admin_reset_pass');
 
 });
 

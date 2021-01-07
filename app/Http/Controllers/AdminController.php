@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Admin;
 use Illuminate\Http\Request;
 use Validator;
+use Session;
+
 use \DB;
 
 class AdminController extends Controller
@@ -73,6 +75,12 @@ class AdminController extends Controller
                 //   Test  ********************   
                 // var_dump($admin);
                 //  die;
+
+            }else{
+
+                Session::flash('message', 'Mobile Number Or Passwod is wrong!'); 
+                return  redirect()->back();
+
 
             }
                 
@@ -160,17 +168,29 @@ class AdminController extends Controller
          
             // Check Given OTP Code with Actual OTP Code 
             if($is_otp_correct){
-                
-                echo "Your Inputed OTP is CXorrect";
+
+                return redirect()->route('admin.pass_resetadmin_reset_pass');
 
             }else{
-                echo "Your Inputed OTP is not Correct";
+                
+                Session::flash('message', 'This is a message!'); 
+                return  redirect()->back();
+
             }
 
         }
 
     }
 
+
+    /**
+     * Password Reset Form
+     */
+
+    public function password_reset(){
+    
+        return view('admin.auth.passwordreset');
+    }
 
      /**
      * Send OTP
