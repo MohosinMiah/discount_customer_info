@@ -1,19 +1,19 @@
-@extends('admin.main.main')
+@include('admin.dashboard.include.header')
 
-@section('title', 'Admin Login')
+{{-- https://startbootstrap.com/theme/sb-admin-2  Bootstrap SB-Admin Theme Template Used --}}
 
+<body id="page-top">
 
-@section('main_body')
+<!-- Page Wrapper -->
+<div id="wrapper">
 
-    {{-- Main  Section  --}}
+@include('admin.dashboard.include.sidebar')
 
-<div class="container form_style">
-    <div class="row ">
-  
-  
-  <h1> Admin Dashboard</h1>
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
 
-    </div>
-  </div>
+<!-- Main Content -->
+@yield('main_body')
+<!-- End of Main Content -->
 
-  @stop
+@include('admin.dashboard.include.footer')
