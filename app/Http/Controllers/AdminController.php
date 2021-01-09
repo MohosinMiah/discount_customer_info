@@ -11,6 +11,17 @@ use \DB;
 
 class AdminController extends Controller
 {
+
+
+
+    /**
+     * Instantiate a new UserController instance.
+     */
+    public function __construct()
+    {
+    
+
+    }
     
     
     /**
@@ -131,6 +142,20 @@ class AdminController extends Controller
 
     public function otp_updata(){
             
+
+
+        $admin_forgetpass_phone = Session::get('admin_forgetpass_phone');
+
+
+        // Check Phone and OPT is Exist
+
+        if($admin_forgetpass_phone == null){
+          
+
+            return redirect()->route('admin.forgottenadmin_forgotten_password');
+
+        }
+
         return view('admin.auth.otp');
 
     }
@@ -192,6 +217,21 @@ class AdminController extends Controller
      */
 
     public function password_reset(){
+
+        
+        $admin_forgetpass_phone = Session::get('admin_forgetpass_phone');
+
+        $admin_forgetpass_otp = Session::get('admin_forgetpass_otp');
+
+
+        // Check Phone and OPT is Exist
+
+        if($admin_forgetpass_phone == null || $admin_forgetpass_otp == null ){
+          
+
+            return redirect()->route('admin.forgottenadmin_forgotten_password');
+
+        }
     
         return view('admin.auth.passwordreset');
     }
@@ -201,6 +241,11 @@ class AdminController extends Controller
      */
     public function send_otp(Request $request)
     {
+
+
+
+
+
         $code = rand(1000,9999);
 
             
@@ -242,14 +287,17 @@ class AdminController extends Controller
                 //       die();
                 
 
-                $this->sendSms($request->phone,$code);
+                // $this->sendSms($request->phone,$code);
 
 
                 return redirect()->route('admin.send_otpadmin_otp');
 
             }else{
+
+
                 Session::flash('message', 'Phone Number Is Not Found.'); 
                 return  redirect()->back();
+
 
             }
 
@@ -307,6 +355,15 @@ class AdminController extends Controller
 
     public function new_password(Request $request) {
 
+
+        // Stored Session Phone and OTP
+
+        $admin_forgetpass_phone = Session::get('admin_forgetpass_phone');
+
+        $admin_forgetpass_otp = Session::get('admin_forgetpass_otp');
+ 
+        
+
         // Data Validation
 
         $validatedData =Validator::make($request->all(), [
@@ -330,12 +387,6 @@ class AdminController extends Controller
 
         }else{
 
-        // Data For Forget Password User
-        
-        $admin_forgetpass_phone = Session::get('admin_forgetpass_phone');
-
-        $admin_forgetpass_otp = Session::get('admin_forgetpass_otp');
-
 
         // Update Password in admins table based on phone and otp code 
 
@@ -343,7 +394,6 @@ class AdminController extends Controller
              $status =  DB::table('admins')
              ->where(
                  [
-                    ['id', '=', 1],
                     ['phone' , '=', $admin_forgetpass_phone],  
                     ['otp' , '=', $admin_forgetpass_otp],  
                  ]
@@ -356,19 +406,29 @@ class AdminController extends Controller
           // Check Password Update successfully or not
           
           if($status){
+                        
+            // Forget multiple keys...
+            $request->session()->forget(['admin_forgetpass_phone', 'admin_forgetpass_otp']);
 
-            var_dump($status);
-             echo "Update Successfully";
-            die;
+            return redirect()->route('admin.dashboardadmin_dashboard');
+
+            // var_dump($status);
+            //  echo "Update Successfully";
+            // die;
+
           }else{
-            var_dump($status);
+         
+            
+            Session::flash('message', 'Password Is Not Changed.'); 
 
-            echo "Not Update ";
-            die;
+            return  redirect()->back();
 
 
-          }
 
+          
+
+
+        }
 
 
 
