@@ -22,13 +22,13 @@
     <div class="row ">
       <div class="col-md-2"></div>
       <div class="col-md-8 center_div">
-        <form class="form-horizontal border_class" method="POST" >
+        <form class="form-horizontal border_class" method="POST" action="{{ route('admin.newpasswordadmin_new_pass') }}">
             @csrf
             <div class="form-group">
-                <label for="otp"> OTP Code &nbsp; <i class="fa fa-key" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
+                <label for="password"> New Password &nbsp; <i class="fa fa-key" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
                   
-                 <input type="password" name="otp" pattern=".{4}" class="form-control" id="otp" placeholder="OTP Code" oninput="check(this)" required>
-                 <small class="text_warning">Please Check your Mobile Text Message For OTP.</small>
+                 <input type="password" name="password"  class="form-control" id="password" placeholder="New Password"  required>
+                 <small class="text_info">Plese Enter Your New Password.</small>
               </div>
     
              

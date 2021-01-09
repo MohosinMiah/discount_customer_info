@@ -169,11 +169,15 @@ class AdminController extends Controller
             // Check Given OTP Code with Actual OTP Code 
             if($is_otp_correct){
 
+                // If OTP is currect then otp number store in variable
+                Session::put('admin_forgetpass_otp', $otp);
+
+
                 return redirect()->route('admin.pass_resetadmin_reset_pass');
 
             }else{
                 
-                Session::flash('message', 'This is a message!'); 
+                Session::flash('message', 'Check Your OTP Code!'); 
                 return  redirect()->back();
 
             }
@@ -226,15 +230,26 @@ class AdminController extends Controller
 
             if($is_admin){
 
-                // Save Database 
-                $status =  DB::table('admins')->where('id',1)->update(
-                        ['otp' => $code]);
+                // Update OTP  admins ntable 
+                $status =  DB::table('admins')
+                ->where('phone',$is_admin->phone)
+                ->update(['otp' => $code]);
+
+                // If Mobile Number is  currect then Mobile number store in session
+                Session::put('admin_forgetpass_phone', $phone);
+
+                // var_dump(Session::get('phone'));
+                //       die();
                 
 
                 $this->sendSms($request->phone,$code);
 
 
                 return redirect()->route('admin.send_otpadmin_otp');
+
+            }else{
+                Session::flash('message', 'Phone Number Is Not Found.'); 
+                return  redirect()->back();
 
             }
 
@@ -285,6 +300,84 @@ class AdminController extends Controller
     }
 
 
+/**
+ * New Password - Update Password
+ */
+
+
+    public function new_password(Request $request) {
+
+        // Data Validation
+
+        $validatedData =Validator::make($request->all(), [
+            'password' => ['required'],
+        ]);
+
+        // Store Data In Valriables
+
+        $password = $request->password;
+
+        // Password Hashing Technique
+        $password = md5($password);
+
+
+        // Check Data Validation
+
+        if ($validatedData->fails()) {
+            // dd($validatedData);
+
+            return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
+
+        }else{
+
+        // Data For Forget Password User
+        
+        $admin_forgetpass_phone = Session::get('admin_forgetpass_phone');
+
+        $admin_forgetpass_otp = Session::get('admin_forgetpass_otp');
+
+
+        // Update Password in admins table based on phone and otp code 
+
+         // Update OTP  admins ntable 
+             $status =  DB::table('admins')
+             ->where(
+                 [
+                    ['id', '=', 1],
+                    ['phone' , '=', $admin_forgetpass_phone],  
+                    ['otp' , '=', $admin_forgetpass_otp],  
+                 ]
+                 )
+             ->update(
+                ['password' => $password]
+            );
+           
+
+          // Check Password Update successfully or not
+          
+          if($status){
+
+            var_dump($status);
+             echo "Update Successfully";
+            die;
+          }else{
+            var_dump($status);
+
+            echo "Not Update ";
+            die;
+
+
+          }
+
+
+
+
+
+             }
+
+
+
+    }
 
 
     /**

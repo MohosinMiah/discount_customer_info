@@ -63,6 +63,8 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
     Route::get('/password/reset', ['as' => 'pass_reset', 'uses' => 'AdminController@password_reset'])->name('admin_reset_pass');
 
+    Route::post('/password/newpassword', ['as' => 'newpassword', 'uses' => 'AdminController@new_password'])->name('admin_new_pass');
+
 });
 
 
