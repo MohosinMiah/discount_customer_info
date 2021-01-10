@@ -473,6 +473,7 @@ class AdminController extends Controller
 
        $validatedData = Validator::make($request->all(), [
         'name' => 'required',
+        'area_code' => 'required',
         'phone' => 'required|unique:sellers',
         'email' => 'required|unique:sellers',
         'password' => 'required',
@@ -482,6 +483,8 @@ class AdminController extends Controller
     // Store Data In Valriables
 
     $name = $request->name;
+
+    $area_code = $request->area_code;
 
     $phone = $request->phone;
 
@@ -506,6 +509,7 @@ class AdminController extends Controller
         $sellers =  DB::table('sellers')->insert(
             [
                 'name'=> $name,
+                'area_code'=> $area_code,
                 'phone'=> $phone,
                 'email'=> $email,
                 'address'=> $address,
@@ -527,6 +531,12 @@ class AdminController extends Controller
     }
 
 
+
+    public function all(){
+
+         return view('admin.users.all');
+
+    }
 
 /**
  *  ******************************************************************************************
