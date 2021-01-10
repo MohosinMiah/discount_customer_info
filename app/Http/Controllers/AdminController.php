@@ -6,7 +6,7 @@ use App\Admin;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
-
+use Carbon\Carbon;
 use \DB;
 
 class AdminController extends Controller
@@ -116,7 +116,7 @@ class AdminController extends Controller
     public function dashboard(){
 
         return view('admin.dashboard.main.main');
-        
+
 
     }
 
@@ -289,7 +289,7 @@ class AdminController extends Controller
                 //       die();
                 
 
-                // $this->sendSms($request->phone,$code);
+                $this->sendSms($request->phone,$code);
 
 
                 return redirect()->route('admin.send_otpadmin_otp');
@@ -432,36 +432,110 @@ class AdminController extends Controller
 
         }
 
-
-
-
              }
-
-
 
     }
 
 
-    /**
-     * Show the form for creating a new resource.
+
+
+
+
+
+/**
+ *  ******************************************************************************************
+ * ******************************** Dashboard Functionality Implementation  START ************
+ * *******************************************************************************************
+ */
+
+/**
+     * Show the form for creating a new Seller.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
+
+
+
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created seller in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+       // Data Validation
+
+       $validatedData = Validator::make($request->all(), [
+        'name' => 'required',
+        'phone' => 'required|unique:sellers',
+        'email' => 'required|unique:sellers',
+        'password' => 'required',
+        'address' => 'required',
+    ]);
+
+    // Store Data In Valriables
+
+    $name = $request->name;
+
+    $phone = $request->phone;
+
+    $email = $request->email;
+
+    $address = $request->address;
+
+    $password =md5($request->password);
+
+    $admin_id = 1;
+
+    // Check Data Validation
+
+    if ($validatedData->fails()) {
+
+        // dd($validatedData);
+
+        return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
+
+    }else{
+
+        $sellers =  DB::table('sellers')->insert(
+            [
+                'name'=> $name,
+                'phone'=> $phone,
+                'email'=> $email,
+                'address'=> $address,
+                'admin_id' => $admin_id,
+                'created_at' => Carbon::now(),
+                'password'=> $password,
+            ]
+        );
+        // Check Seller Created Successfully or not
+        if($sellers){
+
+            Session::flash('message', 'Seller Created Successfuly!'); 
+            return  redirect()->back();
+
+        }
+
     }
+
+    }
+
+
+
+/**
+ *  ******************************************************************************************
+ * ******************************** Dashboard Functionality Implementation  END ************
+ * *******************************************************************************************
+ */
+
+
+    
 
     /**
      * Display the specified resource.

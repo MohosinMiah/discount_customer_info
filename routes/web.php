@@ -65,6 +65,20 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
     Route::post('/password/newpassword', ['as' => 'newpassword', 'uses' => 'AdminController@new_password'])->name('admin_new_pass');
 
+
+
+    // Seller Settings Route    **********************
+
+    Route::get('/admin/seller/create', ['as' => 'seller_create', 'uses' => 'AdminController@create'])->name('admin_seller_create');
+
+    Route::post('/admin/seller/create/store', ['as' => 'seller_create_store', 'uses' => 'AdminController@store'])->name('admin_seller_create_store');
+   
+
+
+
+
+
+
 });
 
 
