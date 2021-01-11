@@ -121,7 +121,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">ADD SELLERS</button>
+                <button type="submit" class="btn btn-primary">ADD SELLER</button>
               </form>
 
        

@@ -37,6 +37,23 @@
 <script src="{{ URL::asset('/dashboard/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ URL::asset('/dashboard/js/demo/chart-pie-demo.js') }}"></script>
 
+{{-- Dashboard Script --}}
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+
+  {{-- Javascript  For Tool Tip *************************    --}}
+  <script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
 </body>
 
 </html>

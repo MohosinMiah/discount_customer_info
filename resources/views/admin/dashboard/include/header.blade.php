@@ -19,4 +19,9 @@
     <!-- Custom styles for this template-->
     <link href="{{ URL::asset('/dashboard/css/sb-admin-2.min.css') }} " rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
+ {{-- Data Tables --}}
+ 
+
 </head>

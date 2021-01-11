@@ -81,8 +81,53 @@
           
 
         <div class="row">
+            <div class="col-md-12">
 
-             <h3>All Sellers</h3>
+             <table id="example" class="display">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Area Code</th>
+                      <th>Phone</th>
+                      <th>Email </th>
+                      <th> Action </th>
+                  </tr>
+              </thead>
+              <tbody>
+                 @foreach ($sellers as $seller)
+                     
+                
+                  <tr>
+                      <td>{{$seller->id}}</td>
+                      <td>{{$seller->name}}</td>
+                      <td>{{$seller->area_code}}</td>
+                      <td>{{$seller->phone}}</td>
+                      <td>{{$seller->email}}</td>
+                      <td>
+                          <div class="action">
+                            <a href="{{route('admin.seller_editadmin_seller_edit',$seller->id)}}"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Seller Edit"></i></a>
+                            <a href="#" class="text-success"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="Seller View"></i></a>
+                            <a href="#" class="text-warning"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Seller Delete"></i></a>
+                        </div>
+                      </td>
+                  </tr>
+             
+                  @endforeach
+             
+              </tbody>
+              <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Area Code</th>
+                    <th>Phone</th>
+                    <th>Email </th>
+                    <th> Action </th>
+                </tr>
+              </tfoot>
+          </table>
+            </div>
 
     </div>
     <!-- /.container-fluid -->

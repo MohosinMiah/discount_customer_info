@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Seller;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
@@ -534,9 +535,104 @@ class AdminController extends Controller
 
     public function all(){
 
-         return view('admin.users.all');
+        $sellers = Seller::orderBy('created_at', 'desc')->get();
+
+   
+
+        return view('admin.users.all',compact('sellers'));
+
+   }
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Admin  $admin
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($seller_id)
+    {
+        $seller = Seller::where('id',$seller_id)->first();
+        return view('admin.users.update',compact('seller'));
+    }
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Admin  $admin
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        
+          // Data Validation
+
+       $validatedData = Validator::make($request->all(), [
+        'name' => 'required',
+        'area_code' => 'required',
+        'phone' => 'required',
+        'email' => 'required|email',
+        'address' => 'required',
+    ]);
+
+    // Store Data In Valriables
+
+    $name = $request->name;
+
+    $area_code = $request->area_code;
+
+    $phone = $request->phone;
+
+    $email = $request->email;
+
+    $address = $request->address;
+
+    $admin_id = 1;
+
+    // Check Data Validation
+
+    if ($validatedData->fails()) {
+
+        // dd($validatedData);
+
+        return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
+
+    }else{
+
+        $sellers =  DB::table('sellers')
+        ->where('id',$id)
+        ->update(
+            [
+                'name'=> $name,
+                'area_code'=> $area_code,
+                'phone'=> $phone,
+                'email'=> $email,
+                'address'=> $address,
+                'admin_id' => $admin_id,
+                'updated_at' => Carbon::now(),
+            ]
+            );
+        // Check Seller Created Successfully or not
+        if($sellers){
+
+            Session::flash('message', 'Seller Updated Successfuly!'); 
+            return  redirect()->back();
+
+        }
 
     }
+
+
+
+    }
+
+
+
+
 
 /**
  *  ******************************************************************************************
@@ -554,29 +650,6 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Admin $admin)
     {
         //
     }

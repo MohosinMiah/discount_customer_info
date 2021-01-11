@@ -74,9 +74,13 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
     Route::post('/admin/seller/create/store', ['as' => 'seller_create_store', 'uses' => 'AdminController@store'])->name('admin_seller_create_store');
    
     Route::get('/admin/sellers', ['as' => 'seller_all', 'uses' => 'AdminController@all'])->name('admin_seller_all');
+    
+    Route::get('/admin/seller/edit/{id}', ['as' => 'seller_edit', 'uses' => 'AdminController@edit'])->name('admin_seller_edit');
+    
+    Route::post('/admin/seller/update/{id}', ['as' => 'seller_update', 'uses' => 'AdminController@update'])->name('admin_seller_update');
 
 
-
+    
 
 
 
