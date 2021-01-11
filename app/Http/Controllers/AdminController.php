@@ -692,8 +692,8 @@ class AdminController extends Controller
 
 
  public function admin_settings(){
-     echo "<h1>Admin Settings </h1>";
-     die();
+     
+    return view('admin.dashboard.setting.setting');
  }
     
 

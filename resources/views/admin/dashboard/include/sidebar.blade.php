@@ -39,7 +39,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.admin_settingsadmin_settings') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Settings</span></a>
             </li>
