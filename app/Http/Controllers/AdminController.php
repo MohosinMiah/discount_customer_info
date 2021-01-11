@@ -630,8 +630,48 @@ class AdminController extends Controller
 
     }
 
+  /**
+     * Display the specified resource.
+     *
+     * @param  \App\Admin  $admin
+     * @return \Illuminate\Http\Response
+     */
+    public function show($seller_id)
+    {
+
+        $seller = Seller::where('id',$seller_id)->first();
+
+        return view('admin.users.show',compact('seller'));
+
+    }
 
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Admin  $admin
+     * @return \Illuminate\Http\Response
+     */
+
+
+    public function destroy($seller_id)
+    {
+
+        $seller = Seller::where('id',$seller_id)->delete();
+
+        if( $seller){
+
+            Session::flash('message', 'Seller Delete Successfuly!'); 
+            return  redirect()->back();
+
+        }else{
+
+            Session::flash('message', 'Error Not Deleted'); 
+            return  redirect()->back();
+
+        }
+
+    }
 
 
 /**
@@ -641,27 +681,28 @@ class AdminController extends Controller
  */
 
 
+
+
+
+ /**
+ *  ******************************************************************************************
+ * ******************************** Admin Settings Implementation  END ************
+ * *******************************************************************************************
+ */
+
+
+ public function admin_settings(){
+     echo "<h1>Admin Settings </h1>";
+     die();
+ }
     
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Admin $admin)
-    {
-        //
-    }
+ /**
+ *  ******************************************************************************************
+ * ******************************** Admin Settings Implementation  END ************
+ * *******************************************************************************************
+ */
+
+  
 }

@@ -107,8 +107,8 @@
                       <td>
                           <div class="action">
                             <a href="{{route('admin.seller_editadmin_seller_edit',$seller->id)}}"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Seller Edit"></i></a>
-                            <a href="#" class="text-success"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="Seller View"></i></a>
-                            <a href="#" class="text-warning"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Seller Delete"></i></a>
+                            <a href="{{route('admin.seller_viewadmin_seller_show',$seller->id)}}" class="text-success"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="Seller View"></i></a>
+                            <a href="{{ route('admin.seller_destroyadmin_seller_destroy',$seller->id) }}" onclick="return confirm('Are You Sure to Delete?')" class="text-warning"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Seller Delete"></i></a>
                         </div>
                       </td>
                   </tr>
