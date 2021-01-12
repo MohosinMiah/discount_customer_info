@@ -92,35 +92,35 @@
             <form method="POST" action="{{ route('admin.seller_create_storeadmin_seller_create_store')}}">
                 @csrf
                 <div class="form-group">
-                    <label for="name"> Name </label>
+                    <label for="name"> Name *</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Seller Name" required>
                 </div>
 
                   <div class="form-group">
-                    <label for="name">Area Code </label>
+                    <label for="name">Area Code * </label>
                     <input type="text" class="form-control" id="area_code" name="area_code" placeholder="Seller Area Code" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="phone">Phone Number </label>
+                    <label for="phone">Phone Number *</label>
                     <input type="text" class="form-control" id="phone" name="phone" placeholder="Seller Phone Number" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="email">Email </label>
+                    <label for="email">Email  </label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Seller Email" >
                   </div>
 
 
                   <div class="form-group">
-                    <label for="address">Address </label>
+                    <label for="address">Address * </label>
                     <textarea name=""  class="form-control"  id="address" cols="40" rows="5"> hello </textarea>
                 </div>
 
             
 
 
-                <button type="submit" class="btn btn-primary">UPDATE</button>
+                <button type="submit" class="btn btn-primary">UPDATE INFO</button>
               </form>
 
        
@@ -134,6 +134,51 @@
         </div>
 
     </div>
+
+
+
+   {{-- Password Setting  ************************     --}}
+
+   <br>
+
+   <div class="row">
+
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8" >
+              <!-- Content Row -->
+        <div class="card">
+            <div class="card-body">
+               
+        <form method="POST" action="{{ route('admin.seller_create_storeadmin_seller_create_store')}}">
+            @csrf
+            <div class="form-group">
+                <label for="old_password"> Old Password *</label>
+                <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Old Password" required>
+            </div>
+
+              <div class="form-group">
+                <label for="password">New Password *</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="New Password" required>
+              </div>    
+
+            <button type="submit" class="btn btn-primary">UPDATE PASSWORD</button>
+          </form>
+
+   
+        </div>
+    </div>
+</div>
+   
+
+    <div class="col-md-2">
+
+    </div>
+
+</div>
+
+   <br>
+
 
     </div>
     <!-- /.container-fluid -->
