@@ -87,8 +87,18 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
     
     // Admin Settings Route    **********************
     Route::get('/settings', ['as' => 'admin_settings', 'uses' => 'AdminController@admin_settings'])->name('admin_settings');
+  
+    Route::post('/settings/info', ['as' => 'admin_info', 'uses' => 'AdminController@info'])->name('admin_settings_info');
+   
+    Route::post('/settings/change_pass', ['as' => 'admin_change_pass', 'uses' => 'AdminController@change_pass'])->name('admin_change_pass');
+    
+    Route::post('/settings/change_phone', ['as' => 'admin_change_phone', 'uses' => 'AdminController@change_phone'])->name('admin_change_phone');
+
+    
 
 
+
+    
 
 });
 

@@ -705,6 +705,151 @@ class AdminController extends Controller
  }
     
 
+/**
+ * 
+ * Admin Info Update ******************************************************************
+ * 
+ */
+
+
+public function info(Request $request){
+        // Data Validation
+
+        $validatedData = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+        ]);
+
+        // Store Data In Valriables
+
+        $name = $request->name;
+
+        $email = $request->email;
+
+        $address = $request->address;
+
+        $admin_id = 1;
+
+        // Check Data Validation
+
+        if ($validatedData->fails()) {
+
+            // dd($validatedData);
+
+            return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
+
+        }else{
+
+            $admin =  DB::table('admins')
+            ->where('id',$admin_id)
+            ->update(
+                [
+                    'name'=> $name,
+                    'email'=> $email,
+                    'address'=> $address,
+                    'updated_at' => Carbon::now(),
+                ]
+                );
+            // Check Admin Info Updated Successfully or not
+            if($admin){
+
+                Session::flash('message', 'Admin Updated Successfuly!'); 
+                return  redirect()->back();
+
+            }
+
+        }
+    
+}
+
+
+
+
+/**
+ * 
+ * Admin Password Change ******************************************************************
+ * 
+ */
+
+
+public function change_pass(Request $request){
+    // Data Validation
+
+    $validatedData = Validator::make($request->all(), [
+        'old_password' => 'required',
+        'password' => 'required',
+    ]);
+
+
+    
+
+
+    // Store Data In Valriables
+
+    $old_password = $request->old_password;
+
+    $password = $request->password;
+
+    $admin_id = 1;
+    // Hashing Password
+    $password = md5($password);
+    $old_password = md5($old_password);
+
+    // Check Data Validation
+
+    if ($validatedData->fails()) {
+
+        // dd($validatedData);
+
+        return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
+
+    }else{
+
+       
+
+
+      // Check Old Password
+
+      $admin_password = DB::table('admins')->where('password',$old_password)->first();
+
+      if($admin_password == null){
+              // If Old Password Does not Match
+              Session::flash('message', 'Old Password Wrong'); 
+              return  redirect()->back();
+      }
+
+       if($admin_password->password == $old_password ){
+     
+        $admin =  DB::table('admins')
+        ->where('id',$admin_id)
+        ->update(
+            [
+                'id'=> $admin_id,
+                'password'=> $password,
+                'updated_at' => Carbon::now(),
+            ]
+            );
+        // Check Admin Info Updated Successfully or not
+            Session::flash('message', 'Admin Password Successfuly!'); 
+            return  redirect()->back();
+
+        }else{
+
+            // If Old Password Does not Match
+            Session::flash('message', 'Old Password Wrong'); 
+            return  redirect()->back();
+            
+        }
+
+    }
+
+}
+
+
+
+
+
 
  /**
  *  ******************************************************************************************

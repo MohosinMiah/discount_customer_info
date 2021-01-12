@@ -88,18 +88,13 @@
             <div class="card">
                 <div class="card-body">
                    
-            <form method="POST" action="{{ route('admin.seller_create_storeadmin_seller_create_store')}}">
+            <form method="POST" action="{{ route('admin.admin_infoadmin_settings_info')}}">
                 @csrf
                 <div class="form-group">
                     <label for="name"> Name *</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $data['admin']->name}}" required>
                 </div>
 
-
-                  <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $data['admin']->phone}}" required>
-                  </div>
 
                   <div class="form-group">
                     <label for="email">Email  </label>
@@ -123,6 +118,7 @@
         </div>
     </div>
        
+
   
         <div class="col-md-2">
 
@@ -132,7 +128,7 @@
 
 
 
-   {{-- Password Setting  ************************     --}}
+   {{-- Change Phone Number  ************************     --}}
 
    <br>
 
@@ -147,9 +143,48 @@
                
         <form method="POST" action="{{ route('admin.seller_create_storeadmin_seller_create_store')}}">
             @csrf
+         
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{ $data['admin']->phone}}" required>
+              </div>
+
+
+            <button type="submit" class="btn btn-primary">CHANGE PHONE NUMBER</button>
+          </form>
+
+   
+        </div>
+    </div>
+</div>
+   
+
+    <div class="col-md-2">
+
+    </div>
+
+</div>
+
+   <br>
+
+   {{-- Password Setting  ************************     --}}
+
+   <br>
+
+   <div class="row">
+
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8" >
+              <!-- Content Row -->
+        <div class="card">
+            <div class="card-body">
+               
+        <form method="POST" action="{{ route('admin.admin_change_passadmin_change_pass')}}">
+            @csrf
             <div class="form-group">
                 <label for="old_password"> Old Password *</label>
-                <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Old Password" required>
+                <input type="password" class="form-control" id="old_password" name="old_password" placeholder="Old Password" required >
             </div>
 
               <div class="form-group">
