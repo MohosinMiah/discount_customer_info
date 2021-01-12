@@ -1,4 +1,3 @@
- 
 @extends('admin.dashboard.index')
 
 @section('title') Admin @stop
@@ -93,28 +92,24 @@
                 @csrf
                 <div class="form-group">
                     <label for="name"> Name *</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Seller Name" required>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $data['admin']->name}}" required>
                 </div>
 
-                  <div class="form-group">
-                    <label for="name">Area Code * </label>
-                    <input type="text" class="form-control" id="area_code" name="area_code" placeholder="Seller Area Code" required>
-                  </div>
 
                   <div class="form-group">
                     <label for="phone">Phone Number *</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Seller Phone Number" required>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $data['admin']->phone}}" required>
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email  </label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Seller Email" >
+                    <input type="email" class="form-control" id="email" name="email" value="{{ $data['admin']->email}}" >
                   </div>
 
 
                   <div class="form-group">
                     <label for="address">Address * </label>
-                    <textarea name=""  class="form-control"  id="address" cols="40" rows="5"> hello </textarea>
+                    <textarea name="address"  class="form-control"  id="address" cols="40" rows="5"> {{ $data['admin']->address}} </textarea>
                 </div>
 
             

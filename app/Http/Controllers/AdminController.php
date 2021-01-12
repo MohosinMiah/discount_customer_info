@@ -692,8 +692,16 @@ class AdminController extends Controller
 
 
  public function admin_settings(){
+
+    $admin_id = 1;
+
+    $admin = Admin::where('id',$admin_id)->first();
+
+    $data = [
+        'admin'  => $admin,
+    ];
      
-    return view('admin.dashboard.setting.setting');
+    return view('admin.dashboard.setting.setting')->with('data',$data);
  }
     
 
