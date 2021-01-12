@@ -849,6 +849,58 @@ public function change_pass(Request $request){
 
 
 
+/**
+ * 
+ * Admin Phone Update ******************************************************************
+ * 
+ */
+
+
+public function change_phone(Request $request){
+    // Data Validation
+
+    $validatedData = Validator::make($request->all(), [
+        'phone' => 'required',
+    ]);
+
+    // Store Data In Valriables
+
+    $phone = $request->phone;
+
+    $admin_id = 1;
+
+    // Check Data Validation
+
+    if ($validatedData->fails()) {
+
+        // dd($validatedData);
+
+        return redirect()->back()->withErrors($validatedData)->withInput();;  // Redirect Back With Errors
+
+    }else{
+
+        $is_phone =  DB::table('admins')
+        ->where('id',$admin_id)
+        ->update(
+            [
+                'phone'=> $phone,
+                'updated_at' => Carbon::now(),
+            ]
+            );
+        // Check Admin Info Updated Successfully or not
+        if($is_phone){
+
+            Session::flash('message', 'Phone Number Updated Successfuly!'); 
+            return  redirect()->back();
+
+        }
+
+    }
+
+}
+
+
+
 
 
  /**

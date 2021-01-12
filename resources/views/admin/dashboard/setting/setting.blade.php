@@ -110,7 +110,7 @@
             
 
 
-                <button type="submit" class="btn btn-primary">UPDATE INFO</button>
+                <button type="submit" class="btn btn-warning">UPDATE INFO</button>
               </form>
 
        
@@ -141,16 +141,15 @@
         <div class="card">
             <div class="card-body">
                
-        <form method="POST" action="{{ route('admin.seller_create_storeadmin_seller_create_store')}}">
+        <form method="POST" action="{{ route('admin.admin_change_phoneadmin_change_phone')}}">
             @csrf
          
             <div class="form-group">
                 <label for="phone">Phone Number *</label>
-                <input type="text" class="form-control" id="phone" name="phone" value="{{ $data['admin']->phone}}" required>
-              </div>
+                <input type="text" pattern=".{11}" class="form-control" id="phone" name="phone" value="{{ $data['admin']->phone}}" oninput="check(this)"  required>
+            </div>
 
-
-            <button type="submit" class="btn btn-primary">CHANGE PHONE NUMBER</button>
+            <button type="submit" class="btn btn-success">CHANGE PHONE NUMBER</button>
           </form>
 
    
@@ -192,7 +191,7 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="New Password" required>
               </div>    
 
-            <button type="submit" class="btn btn-primary">UPDATE PASSWORD</button>
+            <button type="submit" class="btn btn-info">UPDATE PASSWORD</button>
           </form>
 
    
