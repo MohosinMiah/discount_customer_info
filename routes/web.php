@@ -115,11 +115,14 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
 Route::group(['prefix'=>'sellers','as'=>'seller.'], function(){
 
-    Route::get('/registration', ['as' => 'registration', 'uses' => 'SellerController@registration'])->name('seller_registration');
 
     Route::get('/login', ['as' => 'login', 'uses' => 'SellerController@login'])->name('seller_login');
 
+    Route::post('/login/post', ['as' => 'login', 'uses' => 'SellerController@login_post'])->name('seller_login_post');
+   
     Route::get('/forgotten', ['as' => 'forgotten', 'uses' => 'SellerController@forgotten_password'])->name('seller_forgotten_password');
+   
+    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard'])->name('seller_dashboard');
 
 
 });

@@ -8,21 +8,35 @@
     {{-- Main  Section  --}}
 
 <div class="container">
-    <div class="row">
-      
-      <form class="form-inline" method="POST">
-          @csrf 
+  <div class="row ">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8 center_div">
+      <form class="form-horizontal border_class" method="POST" action="{{ route('seller.loginseller_login_post' ) }}">
+          @csrf
           <div class="form-group">
-            <label for="phone_number">Your Phone Number &nbsp; <i class="fa fa-mobile" aria-hidden="true" style="font-size: 30px;color:green"></i>  </label> 
-              
-              &nbsp; <input type="tel" pattern=".{11}" class="form-control" id="phone_number" placeholder="Your Phone Number" oninput="check(this)" required>
-          </div>
-   
-          <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+              <label for="phone">Phone Number &nbsp; <i class="fa fa-mobile" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
+                
+               <input type="tel" pattern=".{11}" class="form-control" name="phone" id="phone" placeholder="Your Phone Number" oninput="check(this)" required>
+            </div>
   
-  
+            <div class="form-group">
+              <label for="password">Password &nbsp; <i class="fa fa-key" aria-hidden="true" style="font-size: 20px;color:green"></i>  </label> 
+                
+               <input type="password" class="form-control" name="password" id="password" placeholder="Password"  required>
+            </div>
+     
+            <button type="submit" class="btn btn-success">Login</button>
+            <div class="forgotten_password"><a href="{{ route('seller.forgottenseller_forgotten_password') }}">Forgotten Password</a></div>
+          </form>
+    
     </div>
+
+    <div class="col-md-2"></div>
+
+
+  </div>
+
   </div>
 
   @stop
