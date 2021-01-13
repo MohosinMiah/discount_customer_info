@@ -82,7 +82,7 @@ class AdminController extends Controller
             // Check Admin Login Success Or Fail
             if($admin){
 
-                return redirect()->route('admin.dashboardadmin_dashboard');
+                return redirect()->route('dashboardadmin_dashboard');
 
                 //   Test  ********************   
                 // var_dump($admin);
@@ -116,7 +116,7 @@ class AdminController extends Controller
 
     public function dashboard(){
 
-        return view('admin.dashboard.main.main');
+        return view('dashboard.main.main');
 
 
     }
@@ -413,7 +413,7 @@ class AdminController extends Controller
             // Forget multiple keys...
             $request->session()->forget(['admin_forgetpass_phone', 'admin_forgetpass_otp']);
 
-            return redirect()->route('admin.dashboardadmin_dashboard');
+            return redirect()->route('dashboardadmin_dashboard');
 
             // var_dump($status);
             //  echo "Update Successfully";
@@ -701,7 +701,7 @@ class AdminController extends Controller
         'admin'  => $admin,
     ];
      
-    return view('admin.dashboard.setting.setting')->with('data',$data);
+    return view('dashboard.setting.setting')->with('data',$data);
  }
     
 

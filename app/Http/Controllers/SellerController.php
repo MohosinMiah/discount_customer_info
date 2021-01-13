@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Seller;
-use App\seller;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
@@ -104,7 +103,7 @@ class SellerController extends Controller
 
     public function dashboard(){
 
-        return view('seller.dashboard.main.main');
+        return view('dashboard.main.main');
 
 
     }

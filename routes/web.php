@@ -122,7 +122,20 @@ Route::group(['prefix'=>'sellers','as'=>'seller.'], function(){
    
     Route::get('/forgotten', ['as' => 'forgotten', 'uses' => 'SellerController@forgotten_password'])->name('seller_forgotten_password');
    
-    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard'])->name('seller_dashboard');
+    Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'SellerController@dashboard'])->name('seller_dashboard');
+   
+    Route::post('/send/otp', ['as' => 'otp', 'uses' => 'SellerController@send_otp'])->name('seller_send_otp');
+
+    Route::get('/send/otp', ['as' => 'send_otp', 'uses' => 'SellerController@otp_updata'])->name('seller_otp');
+
+    Route::post('/otp/check', ['as' => 'otp_check', 'uses' => 'SellerController@otp_check'])->name('seller_otp_check');
+
+    Route::get('/password/reset', ['as' => 'pass_reset', 'uses' => 'SellerController@password_reset'])->name('seller_reset_pass');
+
+    Route::post('/password/newpassword', ['as' => 'newpassword', 'uses' => 'SellerController@new_password'])->name('seller_new_pass');
+
+
+
 
 
 });

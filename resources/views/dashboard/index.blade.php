@@ -1,4 +1,4 @@
-@include('admin.dashboard.include.header')
+@include('dashboard.include.header')
 
 {{-- https://startbootstrap.com/theme/sb-admin-2  Bootstrap SB-Admin Theme Template Used --}}
 
@@ -7,7 +7,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-@include('admin.dashboard.include.sidebar')
+@include('dashboard.include.sidebar')
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -16,4 +16,4 @@
 @yield('main_body')
 <!-- End of Main Content -->
 
-@include('admin.dashboard.include.footer')
+@include('dashboard.include.footer')
