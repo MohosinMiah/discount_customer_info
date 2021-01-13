@@ -1,4 +1,4 @@
-@extends('customer.main.main')
+@extends('seller.main.main')
 
 @section('title', 'Seller Login')
 

@@ -36,7 +36,7 @@ Route::get('/', 'HomeController@index')->name('home');;
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
+| Admin Routes   **********************************************************
 |--------------------------------------------------------------------------
 |
 | Here contains All Seller Routes File
@@ -104,9 +104,15 @@ Route::group(['prefix'=>'admins','as'=>'admin.'], function(){
 
 
 
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
-| Seller Routes
+| Seller Routes   *********************************************************
 |--------------------------------------------------------------------------
 |
 | Here contains All Seller Routes File 
@@ -133,6 +139,24 @@ Route::group(['prefix'=>'sellers','as'=>'seller.'], function(){
     Route::get('/password/reset', ['as' => 'pass_reset', 'uses' => 'SellerController@password_reset'])->name('seller_reset_pass');
 
     Route::post('/password/newpassword', ['as' => 'newpassword', 'uses' => 'SellerController@new_password'])->name('seller_new_pass');
+
+
+
+    // Customer Settings Route    **********************
+
+    Route::get('/seller/create', ['as' => 'seller_create', 'uses' => 'AdminController@create'])->name('admin_seller_create');
+
+    Route::post('/seller/create/store', ['as' => 'seller_create_store', 'uses' => 'AdminController@store'])->name('admin_seller_create_store');
+   
+    Route::get('/sellers', ['as' => 'seller_all', 'uses' => 'AdminController@all'])->name('admin_seller_all');
+    
+    Route::get('/seller/edit/{id}', ['as' => 'seller_edit', 'uses' => 'AdminController@edit'])->name('admin_seller_edit');
+    
+    Route::post('/seller/update/{id}', ['as' => 'seller_update', 'uses' => 'AdminController@update'])->name('admin_seller_update');
+
+    Route::get('/seller/view/{id}', ['as' => 'seller_view', 'uses' => 'AdminController@show'])->name('admin_seller_show');
+    
+    Route::get('/seller/delete/{id}', ['as' => 'seller_destroy', 'uses' => 'AdminController@destroy'])->name('admin_seller_destroy');
 
 
 

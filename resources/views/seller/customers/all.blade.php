@@ -1,5 +1,5 @@
  
-@extends('dashboard.index')
+@extends('admin.dashboard.index')
 
 @section('title') Admin @stop
 
@@ -81,58 +81,53 @@
           
 
         <div class="row">
+            <div class="col-md-12">
 
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-                  <!-- Content Row -->
-            <div class="card">
-                <div class="card-body">
-                   
-            <form>
-                @csrf
-                <div class="form-group">
-                    <label for="name">Seller Name </label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{$seller->name}}" readonly>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="name">Area Code </label>
-                    <input type="text" class="form-control" id="area_code" name="area_code" value="{{$seller->area_code}}"  readonly>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="phone">Phone Number </label>
-                    <input type="text" class="form-control" id="phone" name="phone" value="{{$seller->phone}}"  readonly>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="email">Email </label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{$seller->email}}"  readonly>
-                  </div>
-
-
-
-                <div class="form-group">
-                    <label for="address">Address *</label>
-                    <input type="text" class="form-control" id="address" name="address" value="{{$seller->address}}"  readonly>
-                </div>
-
-
-                <a href="{{ route('admin.seller_alladmin_seller_all') }}" class="btn btn-primary">Back To List</a>
-                {{-- <a href="" class="btn btn-success">Print</a> --}}
-              </form>
-
-       
+             <table id="example" class="display">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Area Code</th>
+                      <th>Phone</th>
+                      <th>Email </th>
+                      <th> Action </th>
+                  </tr>
+              </thead>
+              <tbody>
+                 @foreach ($sellers as $seller)
+                     
+                
+                  <tr>
+                      <td>{{$seller->id}}</td>
+                      <td>{{$seller->name}}</td>
+                      <td>{{$seller->area_code}}</td>
+                      <td>{{$seller->phone}}</td>
+                      <td>{{$seller->email}}</td>
+                      <td>
+                          <div class="action">
+                            <a href="{{route('admin.seller_editadmin_seller_edit',$seller->id)}}"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Seller Edit"></i></a>
+                            <a href="{{route('admin.seller_viewadmin_seller_show',$seller->id)}}" class="text-success"><i class="fas fa-eye" data-toggle="tooltip" data-placement="top" title="Seller View"></i></a>
+                            <a href="{{ route('admin.seller_destroyadmin_seller_destroy',$seller->id) }}" onclick="return confirm('Are You Sure to Delete?')" class="text-warning"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Seller Delete"></i></a>
+                        </div>
+                      </td>
+                  </tr>
+             
+                  @endforeach
+             
+              </tbody>
+              <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Area Code</th>
+                    <th>Phone</th>
+                    <th>Email </th>
+                    <th> Action </th>
+                </tr>
+              </tfoot>
+          </table>
             </div>
-        </div>
-    </div>
-        </div>
-  
-        <div class="col-md-2">
-
-        </div>
-
-    
 
     </div>
     <!-- /.container-fluid -->

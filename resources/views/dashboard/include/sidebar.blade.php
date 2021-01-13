@@ -43,11 +43,11 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomers"
                     aria-expanded="true" aria-controls="collapseCustomers">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Admin Settings</span>
+                    <span>Customer Settings</span>
                 </a>
                 <div id="collapseCustomers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('admin.seller_createadmin_seller_create') }}">Add New</a>
+                        <a class="collapse-item" href="{{ route('seller.seller_createadmin_seller_create') }}">Add New</a>
                         <a class="collapse-item" href="{{ route('admin.seller_alladmin_seller_all') }}">All Customer</a>
                     </div>
                 </div>
